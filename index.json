@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-11-20T14:35:53.216Z",
+  "generated": "2026-11-20T14:36:23.315Z",
   "extensions": [
     {
       "id": "basalt.docker",
@@ -78,7 +78,7 @@
         "terminal"
       ],
       "script": "extensions/basalt.love2d/main.js",
-      "scriptSha256": "6cbbe9c35252aee35d0756ce6ceba36f9cb1ec248904472cb1f1dfa2520accb3"
+      "scriptSha256": "1bcbdc99f506e5c6d997dfe1d328bbc40c703df859c8678b7573a048c3e24dcd"
     },
     {
       "id": "basalt.xtool",
