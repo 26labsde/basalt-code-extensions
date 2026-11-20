@@ -110,7 +110,7 @@ for (const folder of fs.readdirSync(dir).sort()) {
   console.log(`✓ ${folder}`);
   list.push({
     id: e.id, name: e.name, version: e.version, description: e.description || '', author: e.author, license: e.license, kind: e.kind,
-    platforms: e.platforms || (e.kind === 'snippets' ? ['windows'] : ['windows', 'ipad']),
+    platforms: e.platforms || (['tasks', 'plugin'].includes(e.kind) ? ['windows'] : ['windows', 'ipad']),
     path: `extensions/${folder}/extension.json`,
     sha256: crypto.createHash('sha256').update(text).digest('hex'),
     ...(e.kind === 'plugin' ? {

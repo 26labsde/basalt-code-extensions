@@ -6,7 +6,7 @@
   "author": "Basalt Code",
   "license": "MIT",
   "kind": "snippets",
-  "platforms": ["windows"],
+  "platforms": ["windows", "ipad"],
   "snippets": {
     "language": "javascript",
     "items": [

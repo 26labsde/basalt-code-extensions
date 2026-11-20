@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-11-20T14:39:00.224Z",
+  "generated": "2026-11-20T15:07:52.008Z",
   "extensions": [
     {
       "id": "basalt.docker",
@@ -55,10 +55,11 @@
       "license": "MIT",
       "kind": "snippets",
       "platforms": [
-        "windows"
+        "windows",
+        "ipad"
       ],
       "path": "extensions/basalt.js-snippets/extension.json",
-      "sha256": "fd58a114d27359287afe4118b281ea01234b0936857f6eef9822141452e7b3c9"
+      "sha256": "4356de2878b9b2dda6dbdf306badfb3bee92764034ef35d7c71b039b7e4bcee2"
     },
     {
       "id": "basalt.love2d",

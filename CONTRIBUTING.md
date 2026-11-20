@@ -60,7 +60,7 @@
 }
 ```
 
-## snippets (nur Windows)
+## snippets (Windows und iPad)
 
 ```json
 "snippets": {
@@ -71,7 +71,7 @@
 }
 ```
 
-`body` nutzt die Snippet-Syntax von VS Code (`$1`, `${1:name}`, `$0`).
+`body` nutzt die Snippet-Syntax von VS Code (`$1`, `${1:name}`, `$0`). `language` ist die Sprach-ID der App, z. B. `javascript`, `python`, `swift`. Auf dem iPad gelten `$1`, `${1}`, `${1:name}` und `$0`.
 
 ## tasks (nur Windows)
 
