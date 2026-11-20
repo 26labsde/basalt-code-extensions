@@ -1,0 +1,118 @@
+{
+  "id": "basalt.docker",
+  "name": "Docker",
+  "version": "1.0.0",
+  "description": "Docker-Images bauen und Container starten, stoppen und überwachen – inklusive Docker Compose. Mit Snippets für Dockerfile und compose.yaml. Benötigt Docker Desktop.",
+  "author": "Basalt Code",
+  "license": "MIT",
+  "kind": "tasks",
+  "platforms": ["windows"],
+  "tasks": {
+    "items": [
+      {
+        "label": "Docker: Image bauen",
+        "command": "docker build -t ${input:image} .",
+        "inputs": [{ "id": "image", "prompt": "Name des Images", "default": "meine-app" }]
+      },
+      {
+        "label": "Docker: Image aus geöffnetem Dockerfile bauen",
+        "command": "docker build -f ${file} -t ${input:image} .",
+        "inputs": [{ "id": "image", "prompt": "Name des Images", "default": "meine-app" }]
+      },
+      {
+        "label": "Docker: Container starten",
+        "command": "docker run --rm -it -p ${input:port} --name ${input:name} ${input:image}",
+        "inputs": [
+          { "id": "image", "prompt": "Image", "default": "meine-app" },
+          { "id": "name", "prompt": "Name des Containers", "default": "meine-app" },
+          { "id": "port", "prompt": "Port (Rechner:Container)", "default": "8080:80" }
+        ]
+      },
+      {
+        "label": "Docker: Container im Hintergrund starten",
+        "command": "docker run -d -p ${input:port} --name ${input:name} ${input:image}",
+        "inputs": [
+          { "id": "image", "prompt": "Image", "default": "meine-app" },
+          { "id": "name", "prompt": "Name des Containers", "default": "meine-app" },
+          { "id": "port", "prompt": "Port (Rechner:Container)", "default": "8080:80" }
+        ]
+      },
+      { "label": "Docker: Laufende Container anzeigen", "command": "docker ps" },
+      { "label": "Docker: Alle Container anzeigen", "command": "docker ps -a" },
+      { "label": "Docker: Images anzeigen", "command": "docker images" },
+      {
+        "label": "Docker: Container stoppen",
+        "command": "docker stop ${input:name}",
+        "inputs": [{ "id": "name", "prompt": "Name oder ID des Containers", "default": "meine-app" }]
+      },
+      {
+        "label": "Docker: Container entfernen",
+        "command": "docker rm -f ${input:name}",
+        "inputs": [{ "id": "name", "prompt": "Name oder ID des Containers", "default": "meine-app" }]
+      },
+      {
+        "label": "Docker: Logs verfolgen",
+        "command": "docker logs -f ${input:name}",
+        "inputs": [{ "id": "name", "prompt": "Name oder ID des Containers", "default": "meine-app" }]
+      },
+      {
+        "label": "Docker: Shell im Container öffnen",
+        "command": "docker exec -it ${input:name} sh",
+        "inputs": [{ "id": "name", "prompt": "Name oder ID des Containers", "default": "meine-app" }]
+      },
+      { "label": "Compose: Starten", "command": "docker compose up --build" },
+      { "label": "Compose: Im Hintergrund starten", "command": "docker compose up -d --build" },
+      { "label": "Compose: Stoppen", "command": "docker compose down" },
+      { "label": "Compose: Logs verfolgen", "command": "docker compose logs -f" },
+      { "label": "Compose: Status", "command": "docker compose ps" },
+      { "label": "Docker: Aufräumen (ungenutzte Daten)", "command": "docker system prune" }
+    ],
+    "snippets": [
+      {
+        "language": "dockerfile",
+        "items": [
+          {
+            "prefix": "node",
+            "description": "Dockerfile für eine Node.js-App",
+            "body": "FROM node:${1:22}-alpine\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci --omit=dev\nCOPY . .\nEXPOSE ${2:3000}\nCMD [\"node\", \"${3:index.js}\"]\n"
+          },
+          {
+            "prefix": "python",
+            "description": "Dockerfile für eine Python-App",
+            "body": "FROM python:${1:3.13}-slim\nWORKDIR /app\nCOPY requirements.txt .\nRUN pip install --no-cache-dir -r requirements.txt\nCOPY . .\nEXPOSE ${2:8000}\nCMD [\"python\", \"${3:main.py}\"]\n"
+          },
+          {
+            "prefix": "static",
+            "description": "Statische Webseite mit nginx",
+            "body": "FROM nginx:alpine\nCOPY ${1:.} /usr/share/nginx/html\nEXPOSE 80\n"
+          },
+          {
+            "prefix": "multistage",
+            "description": "Mehrstufiger Build (bauen, dann schlankes Image)",
+            "body": "FROM node:${1:22}-alpine AS build\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci\nCOPY . .\nRUN npm run build\n\nFROM nginx:alpine\nCOPY --from=build /app/${2:dist} /usr/share/nginx/html\nEXPOSE 80\n"
+          },
+          { "prefix": "healthcheck", "description": "HEALTHCHECK", "body": "HEALTHCHECK --interval=30s --timeout=3s CMD ${1:wget -qO- http://localhost:${2:3000}/ || exit 1}" },
+          { "prefix": "user", "description": "Ohne root ausführen", "body": "RUN addgroup -S ${1:app} && adduser -S ${1:app} -G ${1:app}\nUSER ${1:app}" }
+        ]
+      },
+      {
+        "language": "yaml",
+        "items": [
+          {
+            "prefix": "compose",
+            "description": "compose.yaml mit einem Dienst",
+            "body": "services:\n  ${1:app}:\n    build: .\n    ports:\n      - \"${2:8080}:${3:80}\"\n    restart: unless-stopped\n"
+          },
+          {
+            "prefix": "compose-db",
+            "description": "compose.yaml mit App und PostgreSQL",
+            "body": "services:\n  ${1:app}:\n    build: .\n    ports:\n      - \"${2:8080}:${3:3000}\"\n    environment:\n      DATABASE_URL: postgres://${4:app}:${5:geheim}@db:5432/${4:app}\n    depends_on:\n      - db\n  db:\n    image: postgres:17-alpine\n    environment:\n      POSTGRES_USER: ${4:app}\n      POSTGRES_PASSWORD: ${5:geheim}\n      POSTGRES_DB: ${4:app}\n    volumes:\n      - db-data:/var/lib/postgresql/data\n\nvolumes:\n  db-data:\n"
+          },
+          { "prefix": "service", "description": "Weiterer Dienst", "body": "  ${1:name}:\n    image: ${2:image}\n    ports:\n      - \"${3:8080}:${4:80}\"\n" },
+          { "prefix": "volume", "description": "Ordner einbinden", "body": "    volumes:\n      - ${1:./}:${2:/app}\n" },
+          { "prefix": "env", "description": "Umgebungsvariablen aus .env", "body": "    env_file:\n      - .env\n" }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "generated": "2026-11-20T14:35:53.216Z",
+  "extensions": [
+    {
+      "id": "basalt.docker",
+      "name": "Docker",
+      "version": "1.0.0",
+      "description": "Docker-Images bauen und Container starten, stoppen und überwachen – inklusive Docker Compose. Mit Snippets für Dockerfile und compose.yaml. Benötigt Docker Desktop.",
+      "author": "Basalt Code",
+      "license": "MIT",
+      "kind": "tasks",
+      "platforms": [
+        "windows"
+      ],
+      "path": "extensions/basalt.docker/extension.json",
+      "sha256": "ef4cf11f5bba0ad7e4f5e627284168e2a16410000f6bfda54b98a2afe61f2954"
+    },
+    {
+      "id": "basalt.gdscript",
+      "name": "GDScript",
+      "version": "1.0.0",
+      "description": "Syntaxhervorhebung für GDScript (Godot).",
+      "author": "Basalt Code",
+      "license": "MIT",
+      "kind": "language",
+      "platforms": [
+        "windows",
+        "ipad"
+      ],
+      "path": "extensions/basalt.gdscript/extension.json",
+      "sha256": "daabd50925c3c65dae48d6c716bead27e9b2ae83a030ef0ca14c4e9afdbbf6e3"
+    },
+    {
+      "id": "basalt.graphit-mitternacht",
+      "name": "Graphit Mitternacht",
+      "version": "1.0.0",
+      "description": "Dunkles Farbdesign mit kühlem Blau.",
+      "author": "Basalt Code",
+      "license": "MIT",
+      "kind": "theme",
+      "platforms": [
+        "windows",
+        "ipad"
+      ],
+      "path": "extensions/basalt.graphit-mitternacht/extension.json",
+      "sha256": "2cc7170c278d6518ad4d8f2f12061669a47c92ccacb307feddfc3d7e42b649a8"
+    },
+    {
+      "id": "basalt.js-snippets",
+      "name": "JavaScript-Snippets",
+      "version": "1.0.0",
+      "description": "Kurzbefehle für häufige JavaScript-Bausteine.",
+      "author": "Basalt Code",
+      "license": "MIT",
+      "kind": "snippets",
+      "platforms": [
+        "windows"
+      ],
+      "path": "extensions/basalt.js-snippets/extension.json",
+      "sha256": "fd58a114d27359287afe4118b281ea01234b0936857f6eef9822141452e7b3c9"
+    },
+    {
+      "id": "basalt.love2d",
+      "name": "LÖVE 2D",
+      "version": "1.0.0",
+      "description": "2D-Spiele mit LÖVE (Lua) entwickeln: Spiel starten, Projektvorlage, .love und Windows-Spiel exportieren, Autovervollständigung und Hilfe für die love-API.",
+      "author": "Basalt Code",
+      "license": "MIT",
+      "kind": "plugin",
+      "platforms": [
+        "windows"
+      ],
+      "path": "extensions/basalt.love2d/extension.json",
+      "sha256": "294f6cad6392097c2620d960090fdd46861fef2db31fd49ce5ff7ff36887c83d",
+      "permissions": [
+        "workspace",
+        "terminal"
+      ],
+      "script": "extensions/basalt.love2d/main.js",
+      "scriptSha256": "6cbbe9c35252aee35d0756ce6ceba36f9cb1ec248904472cb1f1dfa2520accb3"
+    },
+    {
+      "id": "basalt.xtool",
+      "name": "xtool (iOS-Apps)",
+      "version": "1.0.0",
+      "description": "iPhone- und iPad-Apps mit SwiftPM und xtool unter Windows (WSL) bauen und aufs Gerät bringen: Projekt anlegen, bauen, installieren und starten, Geräte, Anmeldung, USB-Weiterleitung.",
+      "author": "Basalt Code",
+      "license": "MIT",
+      "kind": "plugin",
+      "platforms": [
+        "windows"
+      ],
+      "path": "extensions/basalt.xtool/extension.json",
+      "sha256": "4e41a78c7c1eef57b1b4fba416eac21baa4eba27edfecf5d9dd9e45af62460cc",
+      "permissions": [
+        "workspace",
+        "terminal"
+      ],
+      "script": "extensions/basalt.xtool/main.js",
+      "scriptSha256": "081d52e82ed21879a2f7d0ed7d479b6f942a29a18de6ec350495afbe7a9899f3"
+    }
+  ]
+}

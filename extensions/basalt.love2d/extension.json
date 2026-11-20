@@ -1,0 +1,14 @@
+{
+  "id": "basalt.love2d",
+  "name": "LÖVE 2D",
+  "version": "1.0.0",
+  "description": "2D-Spiele mit LÖVE (Lua) entwickeln: Spiel starten, Projektvorlage, .love und Windows-Spiel exportieren, Autovervollständigung und Hilfe für die love-API.",
+  "author": "Basalt Code",
+  "license": "MIT",
+  "kind": "plugin",
+  "platforms": ["windows"],
+  "plugin": {
+    "main": "main.js",
+    "permissions": ["workspace", "terminal"]
+  }
+}

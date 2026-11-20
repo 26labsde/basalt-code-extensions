@@ -1,0 +1,17 @@
+{
+  "id": "basalt.graphit-mitternacht",
+  "name": "Graphit Mitternacht",
+  "version": "1.0.0",
+  "description": "Dunkles Farbdesign mit kühlem Blau.",
+  "author": "Basalt Code",
+  "license": "MIT",
+  "kind": "theme",
+  "theme": {
+    "id": "basalt.graphit-mitternacht",
+    "name": "Graphit Mitternacht",
+    "dark": true,
+    "background": "12161F",
+    "foreground": "D4DAE6",
+    "colors": { "keyword": "7AA2F7", "type": "2AC3DE", "function": "BB9AF7", "string": "9ECE6A", "number": "FF9E64", "comment": "565F89" }
+  }
+}

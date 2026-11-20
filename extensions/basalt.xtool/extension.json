@@ -1,0 +1,15 @@
+{
+  "id": "basalt.xtool",
+  "name": "xtool (iOS-Apps)",
+  "version": "1.0.0",
+  "description": "iPhone- und iPad-Apps mit SwiftPM und xtool unter Windows (WSL) bauen und aufs Gerät bringen: Projekt anlegen, bauen, installieren und starten, Geräte, Anmeldung, USB-Weiterleitung.",
+  "author": "Basalt Code",
+  "license": "MIT",
+  "repository": "https://github.com/xtool-org/xtool",
+  "kind": "plugin",
+  "platforms": ["windows"],
+  "plugin": {
+    "main": "main.js",
+    "permissions": ["workspace", "terminal"]
+  }
+}

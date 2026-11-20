@@ -1,0 +1,41 @@
+name: Extensions
+
+on:
+  pull_request:
+    paths: ['extensions/**', 'scripts/**']
+  push:
+    branches: [main]
+    paths: ['extensions/**', 'scripts/**']
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: node scripts/build-index.js --check
+
+  index:
+    # After a merge: rebuild index.json (checksums) and commit it. Only CI writes index.json.
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: node scripts/build-index.js
+      - run: |
+          if ! git diff --quiet index.json; then
+            git config user.name "basalt-code-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add index.json
+            git commit -m "index.json aktualisieren"
+            git push
+          fi

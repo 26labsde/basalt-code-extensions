@@ -1,0 +1,3 @@
+# JavaScript-Snippets
+
+Lizenz: MIT

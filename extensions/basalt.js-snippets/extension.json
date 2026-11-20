@@ -1,0 +1,19 @@
+{
+  "id": "basalt.js-snippets",
+  "name": "JavaScript-Snippets",
+  "version": "1.0.0",
+  "description": "Kurzbefehle für häufige JavaScript-Bausteine.",
+  "author": "Basalt Code",
+  "license": "MIT",
+  "kind": "snippets",
+  "platforms": ["windows"],
+  "snippets": {
+    "language": "javascript",
+    "items": [
+      { "prefix": "log", "body": "console.log($1);", "description": "console.log" },
+      { "prefix": "afn", "body": "async function ${1:name}(${2}) {\n\t$0\n}", "description": "async function" },
+      { "prefix": "tryc", "body": "try {\n\t$1\n} catch (err) {\n\t$0\n}", "description": "try/catch" },
+      { "prefix": "fetchj", "body": "const ${1:data} = await fetch(${2:url}).then(r => r.json());", "description": "fetch + JSON" }
+    ]
+  }
+}
